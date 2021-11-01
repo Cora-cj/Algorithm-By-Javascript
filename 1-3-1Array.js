@@ -46,9 +46,70 @@ Array.prototype.deleteLastPosition = function(){
  * 任意位置添加或者删除元素
  * splice()
  */
-Array.prototype.operateInAnyPosition = function(position,len,value){
+Array.prototype.operateInAnyPosition = function(index,len,...value){
+  console.log(value);
+  //删除元素
+  let newArr = []
+  let endIndex = index + len
+  let valueLen = value.length
+  for(let i = 0; i < this.length; i++){
+    if(i <= index || i > endIndex){
+      newArr.push(this[i])
+    }
+  }
+  if(valueLen !== 0){
+    let addArr = []
+    for(let j = 0; j <= index; j++){
+      addArr[j] = newArr[j]
+    }
+    for(let x = 0; x < value.length; x++){
+      addArr.push(value[x])
+    }
+    for(let y = index+1; y < newArr.length; y++){
+      addArr.push(newArr[y])
+    }
+    return addArr
+  }else{
+    return newArr
+  }
+
   
 }
-const arr = new Array(1,2,3,4,5)
-// arr.insertFirstPosition(0)
-console.log(arr.deleteLastPosition());
+/**
+ * 数组是否包含当前元素
+ * include()
+ */
+Array.prototype.isInclude = function(val){
+  for(let i = 0; i < this.length; i++){
+    if(this[i] === val){
+      return true
+    }
+  }
+  return false
+}
+
+/**
+ * 当前元素在数组中的位置，没有返回-1
+ * indexOf
+ */
+Array.prototype.getIndex = function(val){
+  for(let i = 0; i < this.length; i++){
+    if(this[i] === val){
+      return i
+    }
+  }
+  return -1
+}
+const arr = new Array(1,2,3,4,5,6,7,8)
+// console.log(arr.getIndex(7));
+
+/**
+ * 使用reducer方法
+ */
+let reducerArr = [1,2,3,4,5]
+let result = reducerArr.reduce((previous,current)=>{
+  console.log(previous,current);
+  return previous + current
+
+})
+console.log(result);
