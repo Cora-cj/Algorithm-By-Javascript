@@ -20,7 +20,6 @@
 //       arr[x] = result[i]
 //       i++
 //     }
-    
 //   }
 // }
 // function mergeSort(arr){

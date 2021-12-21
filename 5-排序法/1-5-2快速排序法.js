@@ -50,26 +50,44 @@ function Partition2(arr,l,r){
   return j
 }
 
+function PartitionTwoWays(arr,l,r){
+  let val = arr[l]
+  let i = l+1
+  let j = r
+  while(true){
+    console.log(i,j);
+    while(arr[i] < arr[l]){
+      i++
+    }
+    while(arr[j] > arr[l]){
+      j--
+    }
+    if(i >= j) break;
+      let valJ = arr[j]
+      arr[j] = arr[i]
+      arr[i] = valJ
+      i++
+      j--
+  }
+  let valJ2 = arr[j]
+      arr[j] = arr[l]
+      arr[l] = valJ2
+      console.log(arr);
+  return j
+}
 
 
-let a = [1,2,3,4,5,6,7]
+// let a = [0,0,0,0,0,0,0,0]
+let a = [4,6,5,2,3,8,7,1]
 function QuickSort(arr,l,r){
   if(l < r){
-    let p = Partition2(arr,l,r)
-    // console.log(p);
-    // if(p !== l && p !== r){
+    let p = PartitionTwoWays(arr,l,r)
+    console.log(p);
       QuickSort(arr,l,p-1)
       QuickSort(arr,p+1,r)
-    // }else if(p === l){
-    //   QuickSort(arr,p+1,r)
-    // }else if(p === r){
-    //   QuickSort(arr,l,p-1)
-    // }
   }
-  
-
-  console.log(arr);
+  // console.log(arr);
     return arr
 }
 console.log(QuickSort(a,0,7));
-console.log(a);
+// console.log(a);
